@@ -23,7 +23,13 @@ class PasswordStrengthTest {
       Arguments.of("password", 2),
       Arguments.of("touchwood", 3),
       // The check should be case-sensitive
-      Arguments.of("TheQuickBrownFoxJumpsOverTheLazyDog", 3)
+      Arguments.of("TheQuickBrownFoxJumpsOverTheLazyDog", 3),
+      // Additional Test Cases
+      Arguments.of("  ", 0),
+      Arguments.of("", 0),
+      Arguments.of(null, 0),
+      Arguments.of("[/.$$", 2),
+      Arguments.of("&&xyz&&xyz&xyzxyz&", 6)
     );
   }
 
@@ -55,7 +61,14 @@ class PasswordStrengthTest {
       Arguments.of("01234*567:", 5),
 
       //Ascending and descending mixed
-      Arguments.of("23454321", 5)
+      Arguments.of("23454321", 5),
+      // Additional Test Cases
+      Arguments.of("  ", 0),
+      Arguments.of("", 0),
+      Arguments.of(null, 0),
+      Arguments.of("s", 1),
+      Arguments.of("@@@#$%^^#@@#$%%", 0),
+      Arguments.of("abcdef_6543210", 7)
     );
   }
 

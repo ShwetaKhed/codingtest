@@ -3,8 +3,6 @@ package com.oc.codingtest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import java.util.*;
-import static java.util.stream.Collectors.*;
-
 
 public class PasswordStrength {
 
@@ -30,7 +28,7 @@ public class PasswordStrength {
   public int getMaxRepetitionCount(String password) {
     // Initialization and checks for password
     HashMap<Character, Integer> hashMap = new HashMap<>();
-    if (password == null || password.isEmpty()){
+    if (password == null || password.trim().isEmpty()){
       return 0;
     }
     for (char c : password.toCharArray()) {
@@ -97,6 +95,7 @@ public class PasswordStrength {
       // find the max sequence and return it
       longestLength = Math.max(longestLength, Math.max(currentAscLength, currentDescLength));
     }
-    return longestLength != 0 ? longestLength + 1 : longestLength;
+    // return to check special and other characters
+    return Arrays.stream(arr).allMatch(num -> num == 0) ? 0: longestLength + 1;
   }
 }
